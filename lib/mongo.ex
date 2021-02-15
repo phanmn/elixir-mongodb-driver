@@ -1198,7 +1198,7 @@ defmodule Mongo do
   See [options](https://docs.mongodb.com/manual/reference/command/createIndexes/#dbcmd.createIndexes) about the
   details of each parameter.
   """
-  @spec create_indexes(GenServer.server, String.t, Keyword.t, Keyword.t) :: :ok | {:error, Mongo.Error.t}
+  @spec create_indexes(GenServer.server, String.t, List.t, Keyword.t) :: :ok | {:error, Mongo.Error.t}
   def create_indexes(topology_pid, coll, indexes, opts \\ []) do
     cmd = [createIndexes: coll, indexes: indexes]
     with {:ok, _} <- Mongo.issue_command(topology_pid, cmd, :write, opts) do
